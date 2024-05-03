@@ -23,3 +23,26 @@ PageTurner is a modern and intuitive mobile application built with React Native 
 - [Axios](https://axios-http.com/) - For making HTTP requests to the API
 
 ## Getting Started
+
+1. Clone the repository:
+```git clone https://github.com/islam-42161/PageTurner.git```
+2. Install dependencies:
+```cd pageturner \nnpm install```
+3. Start the development server:
+```npx expo start```
+4. Open the app in the Expo client on your mobile device or an emulator.
+
+## Contributing
+
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Acknowledgments
+
+- [React Native Community](https://reactnative.community/)
+- [Expo Community](https://expo.dev/community)
+- [React Native Reanimated Documentation](https://docs.swmansion.com/react-native-reanimated/)
+- [Free Public API Documentation](https://example.com/api/docs) (replace with the actual API documentation)
