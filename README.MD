@@ -27,8 +27,8 @@ PageTurner is a modern and intuitive mobile application built with React Native 
 1. Clone the repository:
 ```git clone https://github.com/islam-42161/PageTurner.git```
 2. Install dependencies:
-```cd pageturner
-npm install```
+```cd pageturner```
+```npm install```
 3. Start the development server:
 ```npx expo start```
 4. Open the app in the Expo client on your mobile device or an emulator.
