@@ -3,10 +3,12 @@ import { COLORS, FONTSIZE, FONTWEIGHT, SPACING } from '../const/theme';
 import SearchBar from '../components/SearchBar';
 import { FontAwesome6 } from '@expo/vector-icons';
 import FeaturedCard from '../components/FeaturedCard';
+import ContinueReadingCard from '../components/ContinueReadingCard';
 
 const STATUSBAR_HEIGHT = StatusBar.currentHeight;
 const {height,width} = Dimensions.get('window')
 const feature_card_size = width-(2*SPACING.lg)
+const continue_card_size = width*0.75
 export default function Home() {
   return (
     <View style={styles.container}>
@@ -26,7 +28,7 @@ export default function Home() {
         pagingEnabled
         snapToInterval={feature_card_size + SPACING.sm}
         horizontal
-        contentContainerStyle={{ gap: SPACING.sm,paddingStart:SPACING.lg,paddingEnd:SPACING.lg }}
+        contentContainerStyle={{ gap: SPACING.sm,paddingStart:SPACING.lg,paddingEnd:SPACING.lg,paddingBottom:SPACING.xs }}
         // decelerationRate="normal"
         showsHorizontalScrollIndicator={false}
         scrollEventThrottle={16}
@@ -34,6 +36,26 @@ export default function Home() {
 <FeaturedCard feature_card_size={feature_card_size} title={'The Alchemist'} sub_title={'A shepherd boy chases a dream that leads him on a magical journey of self-discovery across continents.'} image_front={'https://th.bing.com/th/id/OIP.bZnbk9__Gt7bTCQfMQ9zGQHaLL?rs=1&pid=ImgDetMain'} image_back={'https://th.bing.com/th/id/R.3d63870bb7e906f96a56bd450ca54f02?rik=qsyMEp9gYYNGyw&riu=http%3a%2f%2fballisterwriting.com%2fwp-content%2fuploads%2f2018%2f06%2fa-review-of-the-alchemist-back-cover.png&ehk=Nk8yq4EFNvUe1mRRazjtoJEgHyGcBV5MEfaku%2btkH0E%3d&risl=&pid=ImgRaw&r=0'}/>
 <FeaturedCard feature_card_size={feature_card_size} title={'The Alchemist'} sub_title={'A shepherd boy chases a dream that leads him on a magical journey of self-discovery across continents.'} image_front={'https://th.bing.com/th/id/OIP.bZnbk9__Gt7bTCQfMQ9zGQHaLL?rs=1&pid=ImgDetMain'} image_back={'https://th.bing.com/th/id/R.3d63870bb7e906f96a56bd450ca54f02?rik=qsyMEp9gYYNGyw&riu=http%3a%2f%2fballisterwriting.com%2fwp-content%2fuploads%2f2018%2f06%2fa-review-of-the-alchemist-back-cover.png&ehk=Nk8yq4EFNvUe1mRRazjtoJEgHyGcBV5MEfaku%2btkH0E%3d&risl=&pid=ImgRaw&r=0'}/>
 <FeaturedCard feature_card_size={feature_card_size} title={'The Alchemist'} sub_title={'A shepherd boy chases a dream that leads him on a magical journey of self-discovery across continents.'} image_front={'https://th.bing.com/th/id/OIP.bZnbk9__Gt7bTCQfMQ9zGQHaLL?rs=1&pid=ImgDetMain'} image_back={'https://th.bing.com/th/id/R.3d63870bb7e906f96a56bd450ca54f02?rik=qsyMEp9gYYNGyw&riu=http%3a%2f%2fballisterwriting.com%2fwp-content%2fuploads%2f2018%2f06%2fa-review-of-the-alchemist-back-cover.png&ehk=Nk8yq4EFNvUe1mRRazjtoJEgHyGcBV5MEfaku%2btkH0E%3d&risl=&pid=ImgRaw&r=0'}/>
+</ScrollView>
+</View>
+      </View>
+      {/* Continue Reading */}
+      <View style={styles.continue_reading}>
+      <Text style={styles.subtitle}>Continue Reading</Text>
+      
+      <View>
+        <ScrollView 
+        pagingEnabled
+        snapToInterval={continue_card_size + SPACING.sm}
+        horizontal
+        contentContainerStyle={{ gap: SPACING.sm,paddingStart:SPACING.lg,paddingEnd:SPACING.lg,paddingBottom:SPACING.xs }}
+        // decelerationRate="normal"
+        showsHorizontalScrollIndicator={false}
+        scrollEventThrottle={16}
+        >
+<ContinueReadingCard continue_card_size={continue_card_size} title={'The Alchemist'} author={'Iftekhar Pasa Uddin'} image={'https://th.bing.com/th/id/OIP.bZnbk9__Gt7bTCQfMQ9zGQHaLL?rs=1&pid=ImgDetMain'}/>
+<ContinueReadingCard continue_card_size={continue_card_size} title={'The Alchemist'} author={'Iftekhar Pasa Uddin'} image={'https://th.bing.com/th/id/OIP.bZnbk9__Gt7bTCQfMQ9zGQHaLL?rs=1&pid=ImgDetMain'}/>
+<ContinueReadingCard continue_card_size={continue_card_size} title={'The Alchemist'} author={'Iftekhar Pasa Uddin'} image={'https://th.bing.com/th/id/OIP.bZnbk9__Gt7bTCQfMQ9zGQHaLL?rs=1&pid=ImgDetMain'}/>
 </ScrollView>
 </View>
       </View>
@@ -69,6 +91,9 @@ const styles = StyleSheet.create({
     borderRadius:SPACING.sm
   },
   featured:{
+    gap:SPACING.xs
+  },
+  continue_reading:{
     gap:SPACING.xs
   }
 });

@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         width:'60%',
         gap:SPACING.xs,
         justifyContent:'flex-end',
-        padding:SPACING.sm
+        padding:SPACING.lg
         // backgroundColor: 'pink'
     },
     imagesContainer: {
