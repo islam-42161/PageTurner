@@ -16,7 +16,7 @@ const FeaturedCard = ({ feature_card_size,image_front, image_back, title, sub_ti
                         transition={1000}
                         blurRadius={10}
                     />
-                    <View style={{backgroundColor:'rgba(255,255,255,0.1)',...StyleSheet.absoluteFill}}/>
+                    <View style={{backgroundColor:'rgba(255,255,255,0.2)',...StyleSheet.absoluteFill}}/>
             <View style={styles.info}>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.subtitle}>{sub_title}</Text>

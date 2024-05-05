@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Image } from 'expo-image'
-import { FONTSIZE, FONTWEIGHT, SPACING } from '../const/theme'
+import { COLORS, FONTSIZE, FONTWEIGHT, SPACING } from '../const/theme'
 
 const ContinueReadingCard = ({continue_card_size,title,author,image}) => {
   return (
@@ -15,8 +15,8 @@ const ContinueReadingCard = ({continue_card_size,title,author,image}) => {
                     />
       </View>
       <View style={styles.info}>
-        <Text style={{fontWeight:FONTWEIGHT.bold,fontSize:FONTSIZE.title}} numberOfLines={1} adjustsFontSizeToFit>{title}</Text>
-        <Text style={{fontWeight:FONTWEIGHT.light,fontSize:FONTSIZE.body}}>{author}</Text>
+        <Text style={{fontWeight:FONTWEIGHT.bold,fontSize:FONTSIZE.subheading}} numberOfLines={1} adjustsFontSizeToFit>{title}</Text>
+        <Text style={{fontWeight:FONTWEIGHT.light,fontSize:FONTSIZE.caption}}>{author}</Text>
       </View>
     </View>
   )
@@ -30,7 +30,7 @@ flexDirection:'row',
 overflow:'hidden',
 borderRadius:SPACING.sm,
 // elevation:1,
-backgroundColor:'white'
+backgroundColor:COLORS.light1
 // padding:SPACING.lg,
 // backgroundColor:'red'
 },
