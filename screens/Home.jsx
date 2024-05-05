@@ -18,7 +18,7 @@ export default function Home() {
       <View style={styles.search_row}>
         <SearchBar />
         <Pressable style={styles.sort_button}>
-          <FontAwesome6 name="sliders" size={FONTSIZE.display} color={COLORS.light1} />
+          <FontAwesome6 name="sliders" size={FONTSIZE.heading} color={COLORS.light1} />
         </Pressable>
       </View>
       {/* featured */}
@@ -115,8 +115,10 @@ const styles = StyleSheet.create({
   },
   sort_button: {
     backgroundColor: COLORS.accent2,
-    padding: SPACING.sm,
-    borderRadius: SPACING.sm,
+    padding: SPACING.lg,
+    borderRadius:SPACING.sm,
+    // width:50,height:50,
+    alignItems:'center',justifyContent:'center'
   },
   featured: {
     gap: SPACING.sm

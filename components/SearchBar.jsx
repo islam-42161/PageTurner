@@ -6,7 +6,7 @@ const SearchBar = () => {
   return (
     <Pressable style={styles.container}>
       <Text style={styles.search_placeholder}>Ex. The Alchemist</Text>
-      <Ionicons name="search" size={FONTSIZE.display} color={COLORS.accent2} />
+      <Ionicons name="search" size={FONTSIZE.heading} color={COLORS.accent2} />
     </Pressable>
   )
 }
@@ -15,19 +15,21 @@ export default SearchBar
 
 const styles = StyleSheet.create({
     container:{
-        borderWidth:1,
+        // borderWidth:1,
         borderColor:COLORS.accent2,
-        padding:SPACING.sm,
+        padding:SPACING.lg,
         borderRadius:SPACING.sm,
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-between',
         gap:SPACING.sm,
-        flex:1
+        flex:1,
+        backgroundColor:COLORS.light2,
+        // height:50,
     },
     search_placeholder:{
         fontWeight:FONTWEIGHT.light,
-        color:'gray',
+        color:COLORS.accent1,
         fontSize:FONTSIZE.subheading
     }
 })
