@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import MainContainer from '../components/MainContainer'
 
-const Settings = ({navigation}) => {
+const Settings = ({route,navigation}) => {
   return (
-    <View>
+    <MainContainer title={"Settings"} navigation={navigation} route={route}>
       <Text>Settings</Text>
-    </View>
+    </MainContainer>
   )
 }
 

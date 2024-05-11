@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import MainContainer from '../components/MainContainer'
 
-const YourShelf = ({navigation}) => {
+const YourShelf = ({route,navigation}) => {
   return (
-    <View>
+    <MainContainer title={"Your Shelf"} navigation={navigation} route={route}>
       <Text>YourShelf</Text>
-    </View>
+    </MainContainer>
   )
 }
 

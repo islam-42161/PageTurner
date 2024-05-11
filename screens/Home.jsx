@@ -6,6 +6,7 @@ import FeaturedCard from '../components/FeaturedCard';
 import ContinueReadingCard from '../components/ContinueReadingCard';
 import { Image } from 'expo-image';
 import BookCardPortrait from '../components/BookCardPortrait';
+import MainContainer from '../components/MainContainer';
 
 const STATUSBAR_HEIGHT = StatusBar.currentHeight;
 const { height, width } = Dimensions.get('window')
@@ -13,8 +14,9 @@ const feature_card_size = width - (2 * SPACING.lg)
 const WINDOW_SIZE = feature_card_size
 const continue_card_size = WINDOW_SIZE * 0.8
 const NEW_RELEASE_CARD_WIDTH = WINDOW_SIZE * 0.5
-export default function Home({ navigation }) {
-  return (<View style={styles.root}>
+export default function Home({ route,navigation }) {
+  return (
+    <MainContainer navigation={navigation} route={route} header={false}>
     <View style={styles.header}>
       <Text style={styles.title}>PageTurner</Text>
     </View>
@@ -23,7 +25,7 @@ export default function Home({ navigation }) {
       <View style={styles.search_row}>
         <SearchBar />
         <Pressable style={styles.sort_button}>
-          <FontAwesome6 name="sliders" size={FONTSIZE.heading} color={COLORS.light1} />
+          <FontAwesome6 name="sliders" size={FONTSIZE.title} color={COLORS.light1} />
         </Pressable>
       </View>
       {/* featured */}
@@ -184,7 +186,7 @@ export default function Home({ navigation }) {
         </View>
       </View>
     </ScrollView>
-  </View>
+  </MainContainer>
   );
 }
 
@@ -192,19 +194,20 @@ const styles = StyleSheet.create({
   root: {
     paddingTop: STATUSBAR_HEIGHT,
     backgroundColor: COLORS.light1,
+    flex:1
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center', gap: SPACING.xs,
-    paddingVertical: SPACING.md
+    paddingVertical: SPACING.md,
+    paddingHorizontal:SPACING.lg
   },
   container: {
     flexGrow: 1,
     gap: SPACING.xl,
-    paddingBottom: "15%"
   },
   title: {
-    fontSize: FONTSIZE.title, marginHorizontal: SPACING.lg, fontWeight: FONTWEIGHT.bold, color: COLORS.accent2
+    fontSize: FONTSIZE.title, fontWeight: FONTWEIGHT.bold, color: COLORS.accent2
   },
   subtitle: {
     fontSize: FONTSIZE.subheading,
@@ -215,14 +218,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: SPACING.sm,
     alignItems: 'center',
-    marginHorizontal: SPACING.lg
+    marginHorizontal: SPACING.lg,
+    height:48
   },
   sort_button: {
     backgroundColor: COLORS.accent2,
-    padding: SPACING.lg,
+    padding: SPACING.md,
     borderRadius: SPACING.sm,
     // width:50,height:50,
-    alignItems: 'center', justifyContent: 'center'
+    alignItems: 'center', justifyContent: 'center',
+    height:48,width:48
   },
   cards_container: {
     gap: SPACING.sm
