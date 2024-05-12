@@ -1,13 +1,16 @@
 import { Pressable, StatusBar, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { COLORS, FONTSIZE, FONTWEIGHT, SPACING } from '../const/theme'
 import { Entypo,FontAwesome6,AntDesign} from '@expo/vector-icons';
+import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import SortModal from './SortModal';
 
 
 
 const STATUSBAR_HEIGHT = StatusBar.currentHeight
-const MainContainer = ({children,header=true,title,navigation,route}) => {
+const MainContainer = ({children,header=true,title,navigation,route,bottom_sheet_visible=true}) => {
   return (
+    <BottomSheetModalProvider>
     <View style={styles.root}>
         {header?(
             <View style={styles.header}>
@@ -20,6 +23,7 @@ const MainContainer = ({children,header=true,title,navigation,route}) => {
         ):null}
       {children}
     </View>
+    </BottomSheetModalProvider>
   )
 }
 

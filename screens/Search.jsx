@@ -5,6 +5,7 @@ import { Entypo,FontAwesome6,AntDesign} from '@expo/vector-icons';
 import SearchBar from '../components/SearchBar';
 import BookCardSearchSort from '../components/BookCardSearchSort';
 import MainContainer from '../components/MainContainer';
+import SortModal from '../components/SortModal';
 
 const STATUSBAR_HEIGHT = StatusBar.currentHeight
 
@@ -20,6 +21,11 @@ book_cover:'https://th.bing.com/th/id/OIP.bZnbk9__Gt7bTCQfMQ9zGQHaLL?rs=1&pid=Im
 
 const Search = ({ route, navigation }) => {
   const [searchText,setSearchText]=useState('');
+  const [sortModalVisible,setSortModalVisible] = useState(false);
+  const handleSortPress = ()=>{
+    setSortModalVisible(true)
+    console.log("pressed modal: ",sortModalVisible)
+  }
   return (
     <MainContainer navigation={navigation} route={route} title={"Search Results"}>
       
@@ -27,7 +33,7 @@ const Search = ({ route, navigation }) => {
       <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.search_row}>
         <SearchBar searchText={searchText} setSearchText={setSearchText} searchable={true} />
-        <Pressable style={[styles.button,{backgroundColor:COLORS.accent2}]}>
+        <Pressable onPress={handleSortPress} style={[styles.button,{backgroundColor:COLORS.accent2}]}>
           <FontAwesome6 name="sliders" size={FONTSIZE.title} color={COLORS.light1} />
         </Pressable>
       </View>
@@ -57,6 +63,7 @@ const Search = ({ route, navigation }) => {
         
       </View>
       </ScrollView>
+      <SortModal sortModalVisible={sortModalVisible} setSortModalVisible={setSortModalVisible}/>
       </MainContainer>
   )
 }

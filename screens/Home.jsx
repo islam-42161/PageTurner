@@ -7,6 +7,8 @@ import ContinueReadingCard from '../components/ContinueReadingCard';
 import { Image } from 'expo-image';
 import BookCardPortrait from '../components/BookCardPortrait';
 import MainContainer from '../components/MainContainer';
+import SortModal from '../components/SortModal';
+import { useCallback, useState } from 'react';
 
 const STATUSBAR_HEIGHT = StatusBar.currentHeight;
 const { height, width } = Dimensions.get('window')
@@ -15,6 +17,11 @@ const WINDOW_SIZE = feature_card_size
 const continue_card_size = WINDOW_SIZE * 0.8
 const NEW_RELEASE_CARD_WIDTH = WINDOW_SIZE * 0.5
 export default function Home({ route,navigation }) {
+  const [sortModalVisible,setSortModalVisible] = useState(false);
+  const handleSortPress = ()=>{
+    setSortModalVisible(true)
+    console.log("pressed modal: ",sortModalVisible)
+  }
   return (
     <MainContainer navigation={navigation} route={route} header={false}>
     <View style={styles.header}>
@@ -23,8 +30,8 @@ export default function Home({ route,navigation }) {
 
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.search_row}>
-        <SearchBar />
-        <Pressable style={styles.sort_button}>
+        <SearchBar navigation={navigation} />
+        <Pressable onPress={handleSortPress} style={styles.sort_button}>
           <FontAwesome6 name="sliders" size={FONTSIZE.title} color={COLORS.light1} />
         </Pressable>
       </View>
@@ -186,6 +193,7 @@ export default function Home({ route,navigation }) {
         </View>
       </View>
     </ScrollView>
+    <SortModal sortModalVisible={sortModalVisible} setSortModalVisible={setSortModalVisible}/>
   </MainContainer>
   );
 }
