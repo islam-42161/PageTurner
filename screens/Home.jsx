@@ -240,12 +240,6 @@ const styles = StyleSheet.create({
   cards_container: {
     gap: SPACING.sm
   },
-  cards_container: {
-    gap: SPACING.sm
-  },
-  cards_container: {
-    gap: SPACING.sm
-  },
   sponsored_item: {
     flexDirection: 'row',
     width: WINDOW_SIZE,
