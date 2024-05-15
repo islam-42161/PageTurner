@@ -8,14 +8,21 @@ import {
 } from '@gorhom/bottom-sheet';
 import { COLORS, FONTSIZE, FONTWEIGHT, SPACING } from '../const/theme';
 import { BookFormats, BookGenres } from '../const/data';
+import MultiSlider from '@ptomasroos/react-native-multi-slider';
 const STATUSBAR_HEIGHT = StatusBar.currentHeight
-
+const {width,height} = Dimensions.get('window')
+const SLIDER_WIDTH = width * 0.8
 const SortModal = ({ sortModalVisible, setSortModalVisible }) => {
     // ref
     const bottomSheetModalRef = useRef(null);
 
     // variables
-    const snapPoints = useMemo(() => ["100%"], []);
+    const snapPoints = useMemo(() => ["70%"], []);
+    const [priceRange, setPriceRange] = useState([0, 1000]);
+
+    const handlePriceRangeChange = (values) => {
+        setPriceRange(values);
+    };
 
     // callbacks
     const handlePresentModalPress = useCallback(() => {
@@ -100,47 +107,46 @@ const SortModal = ({ sortModalVisible, setSortModalVisible }) => {
         [selectedFormats, handleFormatChipPress]
     );
 
-    const [showBoughtBooks,setShowBoughtBooks] = useState(false);
+    const [showBoughtBooks, setShowBoughtBooks] = useState(false);
+    const [searchText, setSearchText] = useState('');
 
     const toggleShowBoughtBooks = useCallback(() => {
         setShowBoughtBooks((prevShowBoughtBooks) => !prevShowBoughtBooks);
-      }, []);
+    }, []);
 
-const TextSwitchButton = useCallback(()=>(
-    <Pressable onPress={toggleShowBoughtBooks} style={{flexDirection:'row',borderRadius:SPACING.sm,overflow:'hidden',borderColor:COLORS.accent2,borderWidth:1}}>
-<Text style={{
-            paddingHorizontal: SPACING.sm,
-            paddingVertical: SPACING.xs,
-            fontSize: FONTSIZE.body,
-            backgroundColor: showBoughtBooks ? COLORS.accent2 : COLORS.light1,
-            color: showBoughtBooks ? COLORS.light1 : COLORS.accent2,
-          }}>Yes</Text>
-<Text style={{
-            paddingHorizontal: SPACING.sm,
-            paddingVertical: SPACING.xs,
-            fontSize: FONTSIZE.body,
-            backgroundColor: !showBoughtBooks ? COLORS.accent2 : COLORS.light1,
-            color: !showBoughtBooks ? COLORS.light1 : COLORS.accent2,
-          }}>No</Text>
-    </Pressable>
-),[showBoughtBooks,toggleShowBoughtBooks])
-
-
+    const TextSwitchButton = useCallback(() => (
+        <Pressable onPress={toggleShowBoughtBooks} style={{ flexDirection: 'row', borderRadius: SPACING.sm, overflow: 'hidden', borderColor: COLORS.accent2, borderWidth: 1 }}>
+            <Text style={{
+                paddingHorizontal: SPACING.sm,
+                paddingVertical: SPACING.xs,
+                fontSize: FONTSIZE.body,
+                backgroundColor: showBoughtBooks ? COLORS.accent2 : COLORS.light1,
+                color: showBoughtBooks ? COLORS.light1 : COLORS.accent2,
+            }}>Yes</Text>
+            <Text style={{
+                paddingHorizontal: SPACING.sm,
+                paddingVertical: SPACING.xs,
+                fontSize: FONTSIZE.body,
+                backgroundColor: !showBoughtBooks ? COLORS.accent2 : COLORS.light1,
+                color: !showBoughtBooks ? COLORS.light1 : COLORS.accent2,
+            }}>No</Text>
+        </Pressable>
+    ), [showBoughtBooks, toggleShowBoughtBooks])
 
 
 
-
-const handleResetPress = useCallback(() => {
-    setSelectedGenres([]);
-    setSelectedFormats([]);
-    setShowBoughtBooks(false);
-  }, []);
+const handleSearchTextChange = useCallback((value) => {
+  setSearchText(value);
+}, [setSearchText]);
 
 
-
-
-
-
+    const handleResetPress = useCallback(() => {
+        setSelectedGenres([]);
+        setSelectedFormats([]);
+        setShowBoughtBooks(false);
+        handlePriceRangeChange([0,1000]);
+        handleSearchTextChange('')
+    }, []);
 
 
 
@@ -160,62 +166,82 @@ const handleResetPress = useCallback(() => {
             <Pressable onPress={Keyboard.dismiss} style={styles.container}>
                 <View style={styles.sub_container}>
 
-                
-                <TextInput style={{ marginHorizontal: SPACING.lg, marginTop: SPACING.lg,paddingHorizontal:SPACING.lg,paddingVertical:SPACING.md,borderRadius:SPACING.sm,borderWidth:1,borderColor:COLORS.accent2 }} placeholder='Sort by name' />
-                {/* genres */}
-                <View style={{ gap: SPACING.sm }}>
-                    <Text style={{ fontSize: FONTSIZE.subheading, fontWeight: FONTWEIGHT.medium, paddingHorizontal:SPACING.lg }}>Genre</Text>
-                    <ScrollView
-                        horizontal
-                        contentContainerStyle={{
-                            alignItems: 'center',
-                            gap: SPACING.sm,
-                            paddingStart: SPACING.lg,
-                            paddingEnd: SPACING.lg,
-                        }}
-                        showsHorizontalScrollIndicator={false}
-                    >
-                        {[...selectedGenres, ...BookGenres.filter((genre) => !selectedGenres.includes(genre))].map(renderGenreChips)}
-                    </ScrollView>
+
+                    <TextInput value={searchText} onChangeText={handleSearchTextChange} style={{ marginHorizontal: SPACING.lg, marginTop: SPACING.lg, paddingHorizontal: SPACING.lg, paddingVertical: SPACING.md, borderRadius: SPACING.sm, borderWidth: 1, borderColor: COLORS.accent2 }} placeholder='Sort by name' />
+                    {/* genres */}
+                    <View style={{ gap: SPACING.sm }}>
+                        <Text style={{ fontSize: FONTSIZE.subheading, fontWeight: FONTWEIGHT.medium, paddingHorizontal: SPACING.lg }}>Genre</Text>
+                        <ScrollView
+                            horizontal
+                            contentContainerStyle={{
+                                alignItems: 'center',
+                                gap: SPACING.sm,
+                                paddingStart: SPACING.lg,
+                                paddingEnd: SPACING.lg,
+                            }}
+                            showsHorizontalScrollIndicator={false}
+                        >
+                            {[...selectedGenres, ...BookGenres.filter((genre) => !selectedGenres.includes(genre))].map(renderGenreChips)}
+                        </ScrollView>
+                    </View>
+
+
+                    {/* Book Formats */}
+                    <View style={{ gap: SPACING.sm }}>
+                        <Text style={{ fontSize: FONTSIZE.subheading, fontWeight: FONTWEIGHT.medium, paddingHorizontal: SPACING.lg }}>Format</Text>
+                        <ScrollView
+                            horizontal
+                            contentContainerStyle={{
+                                alignItems: 'center',
+                                gap: SPACING.sm,
+                                paddingStart: SPACING.lg,
+                                paddingEnd: SPACING.lg,
+                            }}
+                            showsHorizontalScrollIndicator={false}
+                        >
+                            {[...selectedFormats, ...BookFormats.filter((btype) => !selectedFormats.includes(btype))].map(renderFormatChips)}
+                        </ScrollView>
+                    </View>
+
+
+                    {/* bought books */}
+                    <View style={{ flexDirection: 'row', gap: SPACING.lg, justifyContent: 'space-between', paddingHorizontal: SPACING.lg }}>
+                        <Text style={{ fontSize: FONTSIZE.subheading, fontWeight: FONTWEIGHT.medium }}>Show used books</Text>
+                        {/* switch button */}
+                        <TextSwitchButton />
+                    </View>
+
+                    <View>
+                        <Text style={{ fontSize: FONTSIZE.subheading, fontWeight: FONTWEIGHT.medium, paddingHorizontal: SPACING.lg }}>Price Range</Text>
+                        
+                        <View style={{gap:SPACING.xs}}>
+                            <MultiSlider
+                            values={priceRange}
+                            sliderLength={SLIDER_WIDTH}
+                            onValuesChange={handlePriceRangeChange}
+                            min={0}
+                            max={1000}
+                            step={50}
+                            allowOverlap
+                            snapped
+                            customMarker={(e)=><Text style={{backgroundColor:COLORS.accent2,height:FONTSIZE.heading,paddingHorizontal:SPACING.sm,color:COLORS.light2,borderRadius:SPACING.sm,textAlign:'center',textAlignVertical:'center',fontSize:FONTSIZE.caption}} numberOfLines={1} adjustsFontSizeToFit>${e.currentValue}</Text>}
+                            containerStyle={{alignSelf:'center'}}
+                            selectedStyle={{backgroundColor:COLORS.accent1}}                            
+                        />
+                        </View>
+                    </View>
                 </View>
 
 
-                {/* Book Formats */}
-                <View style={{ gap: SPACING.sm }}>
-                    <Text style={{ fontSize: FONTSIZE.subheading, fontWeight: FONTWEIGHT.medium, paddingHorizontal:SPACING.lg }}>Format</Text>
-                    <ScrollView
-                        horizontal
-                        contentContainerStyle={{
-                            alignItems: 'center',
-                            gap: SPACING.sm,
-                            paddingStart: SPACING.lg,
-                            paddingEnd: SPACING.lg,
-                        }}
-                        showsHorizontalScrollIndicator={false}
-                    >
-                        {[...selectedFormats, ...BookFormats.filter((btype) => !selectedFormats.includes(btype))].map(renderFormatChips)}
-                    </ScrollView>
+                {/* bottom buttons */}
+                <View style={{ flexDirection: 'row', gap: SPACING.lg, alignItems: 'center', paddingHorizontal: SPACING.lg }}>
+                    <TouchableOpacity onPress={handleResetPress} style={{ flex: 1, borderColor: COLORS.accent2, alignItems: 'center', justifyContent: 'center', padding: SPACING.lg, borderRadius: SPACING.sm, borderWidth: 1 }}>
+                        <Text style={{ color: COLORS.accent2 }}>Reset</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ flex: 1, backgroundColor: COLORS.accent2, alignItems: 'center', justifyContent: 'center', padding: SPACING.lg, borderRadius: SPACING.sm }}>
+                        <Text style={{ color: COLORS.light2 }}>Apply</Text>
+                    </TouchableOpacity>
                 </View>
-                
-
-                {/* bought books */}
-                <View style={{flexDirection:'row',gap:SPACING.lg,justifyContent:'space-between',paddingHorizontal:SPACING.lg}}>
-                    <Text style={{fontSize:FONTSIZE.subheading,fontWeight:FONTWEIGHT.medium}}>Show used books</Text>
-                {/* switch button */}
-                <TextSwitchButton/>
-  </View>
-
-  </View>
-
-  {/* bottom buttons */}
-  <View style={{flexDirection:'row',gap:SPACING.lg,alignItems:'center',paddingHorizontal:SPACING.lg}}>
-    <TouchableOpacity onPress={handleResetPress} style={{flex:1,borderColor:COLORS.accent2,alignItems:'center',justifyContent:'center',padding:SPACING.lg,borderRadius:SPACING.sm,borderWidth:1}}>
-        <Text style={{color:COLORS.accent2}}>Reset</Text>
-    </TouchableOpacity>
-    <TouchableOpacity style={{flex:1,backgroundColor:COLORS.accent2,alignItems:'center',justifyContent:'center',padding:SPACING.lg,borderRadius:SPACING.sm}}>
-        <Text style={{color:COLORS.light1}}>Apply</Text>
-    </TouchableOpacity>
-  </View>
             </Pressable>
         </BottomSheetModal>
     );
@@ -225,7 +251,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         gap: SPACING.lg,
-        justifyContent:'space-between',paddingBottom:STATUSBAR_HEIGHT*1.5+SPACING.lg
+        justifyContent: 'space-between', paddingBottom: STATUSBAR_HEIGHT * 1.5 + SPACING.lg
     },
     sub_container: {
         gap: SPACING.lg,
