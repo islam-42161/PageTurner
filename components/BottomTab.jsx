@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import { COLORS, SPACING } from '../const/theme';
-import { Feather } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function BottomTab({ state, descriptors, navigation }) {
     const screen_icons = ['home','','','']
@@ -45,9 +45,18 @@ export default function BottomTab({ state, descriptors, navigation }) {
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{ backgroundColor: isFocused ? COLORS.accent1 : COLORS.accent2 }}
+            style={{ backgroundColor: isFocused ? COLORS.light2 : null,padding:SPACING.sm,borderRadius:SPACING.sm }}
           >
-            <Feather name="home" size={24} color={isFocused ? COLORS.accent2 : COLORS.accent1} />
+            {label === 'home'?(
+            <Ionicons name="home-outline" size={24} color={isFocused ? COLORS.accent2 : COLORS.accent1} />
+            ):label==='search'?(
+            <Ionicons name="search-outline" size={24} color={isFocused ? COLORS.accent2 : COLORS.accent1} />
+            ):label==='yourshelf'?(
+              <Ionicons name="library-outline" size={24} color={isFocused ? COLORS.accent2 : COLORS.accent1} />
+            ):(
+              // when label is settings
+              <Ionicons name="settings-outline" size={24} color={isFocused ? COLORS.accent2 : COLORS.accent1} />
+            )}
             {/* <Text style={{ color: isFocused ? COLORS.accent2 : COLORS.accent1 }}>
               {label}
             </Text> */}

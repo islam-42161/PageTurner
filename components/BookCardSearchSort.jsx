@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
   },
   info:{
     flex:1,
-    padding:SPACING.lg,
+    paddingTop:SPACING.lg,
+    paddingLeft:SPACING.lg,
     gap:SPACING.xs,
     justifyContent:'space-between'
   },
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: COLORS.accent1,
     padding: SPACING.md,
-    borderRadius: SPACING.sm,
+    borderRadius: SPACING.md,
     alignItems: 'center',
     justifyContent: 'center',
     height:48,width:48,alignSelf:'flex-end'

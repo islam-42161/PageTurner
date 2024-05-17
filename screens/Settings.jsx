@@ -1,4 +1,4 @@
-import { Dimensions, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Dimensions, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import MainContainer from '../components/MainContainer'
 import { COLORS, FONTSIZE, FONTWEIGHT, SPACING } from '../const/theme'
@@ -13,45 +13,38 @@ const Settings = ({ route, navigation }) => {
     <MainContainer title={"Settings"} navigation={navigation} route={route}>
       <View style={styles.container}>
         {/* Avatar */}
-        {/* <View style={styles.top_container}> */}
 
         <Pressable style={styles.avatar_container}>
           <View style={styles.avatar}>
             <Image
               style={StyleSheet.absoluteFill}
-              source={'https://scontent.xx.fbcdn.net/v/t1.15752-9/440853280_1488374208414442_1216537300279954498_n.jpg?stp=dst-jpg_s403x403&_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEMAv1rrQFCNUFOaXgnJL9xYDyY2yx84pZgPJjbLHzilm2JcGloJSK_GVBTLLgEXs-lEU4L-10J7Of5FFjrdKga&_nc_ohc=6u-6GyiHnGgQ7kNvgGk1pHD&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QHaCStlvt5GR8cZ-RgqbRaxKtvHc1B9aELgAJK0R4mrag&oe=666C7E71'}
+              // source={'https://scontent.xx.fbcdn.net/v/t1.15752-9/440853280_1488374208414442_1216537300279954498_n.jpg?stp=dst-jpg_s403x403&_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEMAv1rrQFCNUFOaXgnJL9xYDyY2yx84pZgPJjbLHzilm2JcGloJSK_GVBTLLgEXs-lEU4L-10J7Of5FFjrdKga&_nc_ohc=6u-6GyiHnGgQ7kNvgGk1pHD&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QHaCStlvt5GR8cZ-RgqbRaxKtvHc1B9aELgAJK0R4mrag&oe=666C7E71'}
+              // source={'https://portfolio-iftekhar.vercel.app/pp3.jpg'}
+              source={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIaQx27goTXRtZpT6TvasjOLZYANmGXbjOEaSblZ0wfA&s'}
               contentFit="cover"
               transition={1000}
             />
           </View>
         </Pressable>
-        {/* <View style={{flex:1,justifyContent:'space-between',alignItems:'flex-end',backgroundColor:COLORS.light2,padding:SPACING.lg,borderRadius:SPACING.sm,gap:SPACING.lg}}>
-          <TouchableOpacity style={{height:32,width:32,alignItems:'center',justifyContent:'center',backgroundColor:COLORS.accent2,borderRadius:18}}>
-        <MaterialCommunityIcons name="circle-edit-outline" size={24} color={COLORS.light2} />
-        </TouchableOpacity>
-          <View>
-          <Text style={{...styles.title,textAlign:'right',color:COLORS.accent2}}>Naseeruddin Shah Pachaa</Text>
-          <Text style={{...styles.sub_title,textAlign:'right'}}>itak@ppless.com</Text>
-          </View>
-        </View>
-        
-        </View> */}
+
 
         {/* Menu */}
         <View style={styles.menu}>
           
-          <Pressable style={{ ...styles.menu_row, borderRadius:SPACING.sm,marginBottom:SPACING.sm}}>
+          <Pressable style={{ ...styles.menu_row, borderTopLeftRadius:SPACING.sm,borderTopRightRadius:SPACING.sm}}>
             <View style={styles.info}>
               <Text style={{...styles.title,}}>Modal Iftak</Text>
               <Text style={{...styles.sub_title}}>iftakku@modal.com</Text>
             </View>
 
             <TouchableOpacity style={{...styles.icon,borderRadius:18}}>
-              <MaterialCommunityIcons name="circle-edit-outline" size={24} color={COLORS.accent2} />
+              {/* <MaterialCommunityIcons name="circle-edit-outline" size={24} color={COLORS.accent2} /> */}
+              <MaterialCommunityIcons name="chevron-right" size={24} color={COLORS.accent2} />
             </TouchableOpacity>
           </Pressable>
-
-          <Pressable style={{ ...styles.menu_row,borderTopLeftRadius: SPACING.sm, borderTopRightRadius: SPACING.sm}}>
+          <View style={{borderBottomLeftRadius:SPACING.sm,borderBottomRightRadius:SPACING.sm,overflow:'hidden',flex:1}}>
+<ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{}}>
+          <TouchableOpacity style={{ ...styles.menu_row}}>
             <View style={styles.icon}>
               <Ionicons name="library-outline" size={24} color={COLORS.accent2} />
             </View>
@@ -59,10 +52,9 @@ const Settings = ({ route, navigation }) => {
               <Text style={styles.title}>My Shelf</Text>
               <Text style={styles.sub_title}>All saved books</Text>
             </View>
-          </Pressable>
+          </TouchableOpacity>
 
-
-          <Pressable style={{ ...styles.menu_row }}>
+          <TouchableOpacity style={{ ...styles.menu_row }}>
             <View style={styles.icon}>
               <Ionicons name="timer-outline" size={24} color={COLORS.accent2} />
             </View>
@@ -70,9 +62,9 @@ const Settings = ({ route, navigation }) => {
               <Text style={styles.title}>Order History</Text>
               <Text style={styles.sub_title}>List of all your orders</Text>
             </View>
-          </Pressable>
+          </TouchableOpacity>
 
-          <Pressable style={{ ...styles.menu_row }}>
+          <TouchableOpacity style={{ ...styles.menu_row }}>
             <View style={styles.icon}>
               <MaterialCommunityIcons name="target" size={24} color={COLORS.accent2} />
             </View>
@@ -80,17 +72,9 @@ const Settings = ({ route, navigation }) => {
               <Text style={styles.title}>Track Your Order</Text>
               <Text style={styles.sub_title}>Order Journey: From Click to Delivery!</Text>
             </View>
-          </Pressable>
-          {/* <Pressable style={{...styles.menu_row}}>
-<View style={styles.icon}>
-<MaterialCommunityIcons name="account-edit-outline" size={24} color={COLORS.accent2} />
-</View>
-<View style={styles.info}>
-  <Text style={styles.title}>Edit Profile</Text>
-  <Text style={styles.sub_title}>Change your name</Text>
-</View>
-</Pressable> */}
-          <Pressable style={{ ...styles.menu_row }}>
+          </TouchableOpacity>
+          
+          <TouchableOpacity style={{ ...styles.menu_row }}>
             <View style={styles.icon}>
               <MaterialIcons name="password" size={24} color={COLORS.accent2} />
             </View>
@@ -98,8 +82,9 @@ const Settings = ({ route, navigation }) => {
               <Text style={styles.title}>Change Password</Text>
               <Text style={styles.sub_title}>Secure Your Account: Update Your Password</Text>
             </View>
-          </Pressable>
-          <Pressable style={{ ...styles.menu_row, borderBottomLeftRadius: SPACING.sm, borderBottomRightRadius: SPACING.sm }}>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{ ...styles.menu_row,borderBottomLeftRadius:SPACING.sm,borderBottomRightRadius:SPACING.sm}}>
             <View style={styles.icon}>
               <AntDesign name="team" size={24} color={COLORS.accent2} />
             </View>
@@ -107,7 +92,9 @@ const Settings = ({ route, navigation }) => {
               <Text style={styles.title}>Meet the Team</Text>
               <Text style={styles.sub_title}>Collaborators Extraordinaire: Get to Know Us!</Text>
             </View>
-          </Pressable>
+          </TouchableOpacity>
+          </ScrollView>
+          </View>
         </View>
         <TouchableOpacity style={{ padding: SPACING.lg, backgroundColor: COLORS.accent2, marginHorizontal: SPACING.lg, marginBottom: SPACING.lg, alignItems: 'center', borderRadius: SPACING.sm }}><Text style={{ ...styles.title, color: COLORS.light1 }}>Log Out</Text></TouchableOpacity>
       </View>
@@ -143,7 +130,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // backgroundColor:'red',
     marginHorizontal: SPACING.lg,
-    gap: 1
+    gap:SPACING.xs/2
   },
   menu_row: {
     flexDirection: 'row',
