@@ -14,9 +14,9 @@ const BookCardPortrait = ({title,author,image,book_card_size}) => {
                         transition={1000}
                         />
                     </View>
-                    <View>
+                    <View style={styles.info_container}>
                         <Text numberOfLines={1} style={styles.title}>{title}</Text>
-                        <Text style={styles.author}>{author}</Text>
+                        <Text numberOfLines={1} style={styles.author}>{author}</Text>
                         </View>
                         </View>
   )
@@ -34,12 +34,14 @@ const styles = StyleSheet.create({
         borderRadius: SPACING.sm,        
     },
     title:{
-        flex:1,
         fontSize:FONTSIZE.subheading,
         fontWeight:FONTWEIGHT.bold
     },
     author:{
         fontSize:FONTSIZE.body,
         fontWeight:FONTWEIGHT.light
+    },
+    info_container:{
+        flex:1
     }
 })

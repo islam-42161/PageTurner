@@ -6,14 +6,14 @@ import { Image } from 'expo-image'
 import { Ionicons, MaterialCommunityIcons, MaterialIcons, AntDesign } from '@expo/vector-icons';
 
 const { height, width } = Dimensions.get('window')
-const AVATAR_SIZE = width * 0.45
+const AVATAR_SIZE = width * 0.35
 
 const Settings = ({ route, navigation }) => {
   return (
     <MainContainer title={"Settings"} navigation={navigation} route={route}>
       <View style={styles.container}>
         {/* Avatar */}
-        <View style={styles.top_container}>
+        {/* <View style={styles.top_container}> */}
 
         <Pressable style={styles.avatar_container}>
           <View style={styles.avatar}>
@@ -25,7 +25,7 @@ const Settings = ({ route, navigation }) => {
             />
           </View>
         </Pressable>
-        <View style={{flex:1,justifyContent:'space-between',alignItems:'flex-end',backgroundColor:COLORS.light2,padding:SPACING.lg,borderRadius:SPACING.sm,gap:SPACING.lg}}>
+        {/* <View style={{flex:1,justifyContent:'space-between',alignItems:'flex-end',backgroundColor:COLORS.light2,padding:SPACING.lg,borderRadius:SPACING.sm,gap:SPACING.lg}}>
           <TouchableOpacity style={{height:32,width:32,alignItems:'center',justifyContent:'center',backgroundColor:COLORS.accent2,borderRadius:18}}>
         <MaterialCommunityIcons name="circle-edit-outline" size={24} color={COLORS.light2} />
         </TouchableOpacity>
@@ -35,11 +35,23 @@ const Settings = ({ route, navigation }) => {
           </View>
         </View>
         
-        </View>
+        </View> */}
 
         {/* Menu */}
         <View style={styles.menu}>
-          <Pressable style={{ ...styles.menu_row, borderTopLeftRadius: SPACING.sm, borderTopRightRadius: SPACING.sm }}>
+          
+          <Pressable style={{ ...styles.menu_row, borderRadius:SPACING.sm,marginBottom:SPACING.sm}}>
+            <View style={styles.info}>
+              <Text style={{...styles.title,}}>Modal Iftak</Text>
+              <Text style={{...styles.sub_title}}>iftakku@modal.com</Text>
+            </View>
+
+            <TouchableOpacity style={{...styles.icon,borderRadius:18}}>
+              <MaterialCommunityIcons name="circle-edit-outline" size={24} color={COLORS.accent2} />
+            </TouchableOpacity>
+          </Pressable>
+
+          <Pressable style={{ ...styles.menu_row,borderTopLeftRadius: SPACING.sm, borderTopRightRadius: SPACING.sm}}>
             <View style={styles.icon}>
               <Ionicons name="library-outline" size={24} color={COLORS.accent2} />
             </View>
@@ -48,6 +60,8 @@ const Settings = ({ route, navigation }) => {
               <Text style={styles.sub_title}>All saved books</Text>
             </View>
           </Pressable>
+
+
           <Pressable style={{ ...styles.menu_row }}>
             <View style={styles.icon}>
               <Ionicons name="timer-outline" size={24} color={COLORS.accent2} />
@@ -115,7 +129,14 @@ const styles = StyleSheet.create({
     marginHorizontal:SPACING.lg
   },
   avatar_container: {
-    height: AVATAR_SIZE, width: AVATAR_SIZE, borderRadius: AVATAR_SIZE / 2, padding: SPACING.xs, borderWidth: 2, borderColor: COLORS.accent2
+    height: AVATAR_SIZE,
+    width: AVATAR_SIZE, 
+    borderRadius: AVATAR_SIZE / 2, 
+    padding: SPACING.xs, 
+    borderWidth: 2, 
+    borderColor: COLORS.accent2,
+    marginHorizontal:SPACING.lg,
+    alignSelf:'center'
   },
   avatar: { width: "100%", aspectRatio: 1, borderRadius: AVATAR_SIZE / 2, overflow: 'hidden' },
   menu: {
@@ -127,7 +148,7 @@ const styles = StyleSheet.create({
   menu_row: {
     flexDirection: 'row',
     gap: SPACING.lg,
-    backgroundColor: COLORS.accent1,
+    backgroundColor: COLORS.light2,
     padding: SPACING.lg
   },
   title: {
@@ -143,6 +164,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(255,255,255,0.3)',
+    // backgroundColor: COLORS.accent1,
     borderRadius: SPACING.sm
   },
   info: {
