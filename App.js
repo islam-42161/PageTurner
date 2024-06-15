@@ -1,21 +1,17 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import Home from './screens/Home';
-import BottomTabNavigation from './BottomTabNavigation';
-import { NavigationContainer } from '@react-navigation/native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { AppProvider } from './context/AppContext';
+import SignedInStack from './NavigationStack/SignedInStack';
 
 
 export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-
-    <NavigationContainer>
-    {/* <View style={styles.container}> */}
-      <StatusBar style="auto" />
-      <BottomTabNavigation/>
-    {/* </View> */}
-    </NavigationContainer>
+      <AppProvider>
+        {/* check whether user signed in or not */}
+        {/* if signed in go to signinstack else signoutstack */}
+        <SignedInStack />
+      </AppProvider>
     </GestureHandlerRootView>
   );
 }

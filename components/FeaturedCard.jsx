@@ -6,9 +6,9 @@ import { COLORS, FONTSIZE, FONTWEIGHT, SPACING } from '../const/theme'
 
 const IMAGE_WIDTH = 100;
 const {height,width} = Dimensions.get('window')
-const FeaturedCard = ({ feature_card_size,image_front, image_back, title, sub_title }) => {
+const FeaturedCard = ({ handleBookPress, feature_card_size,image_front, image_back, title, sub_title }) => {
     return (
-        <Pressable style={styles.container}>
+        <Pressable onPress={handleBookPress} style={styles.container}>
             <Image
                         style={StyleSheet.absoluteFill}
                         source={image_front}

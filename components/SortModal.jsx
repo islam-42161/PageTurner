@@ -17,7 +17,7 @@ const SortModal = ({ sortModalVisible, setSortModalVisible }) => {
     const bottomSheetModalRef = useRef(null);
 
     // variables
-    const snapPoints = useMemo(() => ["70%"], []);
+    const snapPoints = useMemo(() => ["90%"], []);
     const [priceRange, setPriceRange] = useState([0, 1000]);
 
     const handlePriceRangeChange = (values) => {

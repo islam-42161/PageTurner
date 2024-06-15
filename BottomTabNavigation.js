@@ -15,8 +15,7 @@ export default function BottomTabNavigation() {
       <Tab.Screen name="home" component={Home} />
       <Tab.Screen name="search" component={Search} />
       <Tab.Screen name="yourshelf" component={YourShelf} />
-      <Tab.Screen name="settings" component={Settings} />
-      {/* <Tab.Screen name="Settings" component={SettingsScreen} /> */}
+      <Tab.Screen name="settings" component={Settings} />    
     </Tab.Navigator>
   );
 }
